@@ -14,6 +14,6 @@ class BattleMembersController < ApplicationController
   private
 
   def battle_member_params
-    params.require(:battle).permit(:battle_id, :member_type, :member_id)
+    params.permit(:battle_id, :member_type, :member_id)
   end
 end
