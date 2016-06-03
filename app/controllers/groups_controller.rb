@@ -7,15 +7,12 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.create(group_params)
-    if @group.save
-      redirect_to @group
-    else
-      render action :new
-    end
+    render json: @group
   end
 
   def index
     @groups = Group.all
+    render json: @groups
   end
 
   def show
@@ -25,17 +22,13 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if @group.update_attributes(group_params)
-      redirect_to @group
-    else
-      render action :edit
-    end
+    @group.update_attributes(group_params)
+    render json: @group
   end
 
   def destroy
-    if @group.destroy
-      redirect_to groups_path
-    end
+    @group.destroy
+    render json: 'ok' 
   end
 
   private
