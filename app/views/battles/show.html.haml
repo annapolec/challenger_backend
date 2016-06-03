@@ -1,0 +1,10 @@
+%p= @battle.name
+
+%p
+  = link_to "All battles", battles_path
+  = link_to "Edit battle", edit_battle_path(@battle)
+  = link_to "Destroy battle", battle_path, method: :delete
+
+%p
+  = link_to "Add challenge", new_battle_challenge_path(@battle)
+  = link_to "Challenges", battle_challenges_path(@battle)
