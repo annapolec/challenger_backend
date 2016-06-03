@@ -28,7 +28,7 @@ class BattlesController < ApplicationController
 
   def destroy
    @battle.destroy   
-   render json: 'ok' 
+   render status: 200
   end
 
   private
