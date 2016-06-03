@@ -1,0 +1,6 @@
+%h1 Listing battles
+%ul
+  - @battles.each do |battle|
+    %li= link_to battle.name, battle_path(battle)
+
+= link_to "New battle", new_battle_path

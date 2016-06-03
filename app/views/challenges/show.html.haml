@@ -1,0 +1,16 @@
+%p= @challenge.name
+%ul
+  %li= @challenge.desc
+  %li= @challenge.points
+  %li= @challenge.status
+
+%p
+  = link_to "Edit challenge", edit_battle_challenge_path(@battle, @challenge)
+  = link_to "Destroy challenge", battle_challenge_path(@battle, @challenge), method: :delete
+
+%p
+  = link_to "All battles", battles_path
+  = link_to "Back to battle", battle_path(@battle)
+
+ 
+

@@ -1,0 +1,6 @@
+%h1 Listing challenges
+%ul
+  - @challenges.each do |challenge|
+    %li= link_to challenge.name, battle_challenge_path(@battle, challenge)
+
+= link_to "Back to battle", battle_path(@battle)
