@@ -2,15 +2,10 @@ class UsersController < ApplicationController
 
   def login
     if @user = User.find_by(email: params[:email])
+      render json: @user
     else
-      @user = User.create(user_params)
+      @user = User.create(params[:email])
+      render json: @user
     end
-    render json: @user
-  end
-
-  private
-
-  def user_params
-    params.require(:user).permit(:email)
   end
 end
