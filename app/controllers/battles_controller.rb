@@ -7,15 +7,12 @@ class BattlesController < ApplicationController
 
   def create
     @battle = Battle.create(battle_params)
-    if @battle.save
-      redirect_to @battle
-    else
-      render action :new
-    end
+    render json: @battle
   end
 
   def index
     @battles = Battle.all
+    render json: @battle
   end
 
   def show
@@ -25,17 +22,13 @@ class BattlesController < ApplicationController
   end
 
   def update
-    if @battle.update_attributes(battle_params)
-      redirect_to @battle
-    else
-      render action :edit
-    end
+    @battle.update_attributes(battle_params)
+    render json: @battle
   end
 
   def destroy
-    if @battle.destroy
-      redirect_to battles_path
-    end
+   @battle.destroy   
+   render json: 'ok' 
   end
 
   private
