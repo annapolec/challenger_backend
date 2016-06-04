@@ -6,5 +6,7 @@ Rails.application.routes.draw do
   resources :groups
 
   post "login" => "users#login"
+  post "refresh_token" => "refresh_token#create"
+  get "sync" => "sync#show"
   root "battles#index"  
 end
