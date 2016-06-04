@@ -7,12 +7,13 @@ class BattlesController < ApplicationController
 
   def create
     @battle = Battle.create(battle_params)
+    BattleMember.create(battle_id: @battle.id, battle_member_type: "User", battle_member_id: battle_members_params[:user_id])
     render json: @battle
   end
 
   def index
     @battles = Battle.all
-    render json: @battle
+    render json: @battles
   end
 
   def show
@@ -22,7 +23,7 @@ class BattlesController < ApplicationController
   end
 
   def update
-    @battle.update_attributes(battle_params)
+    @battle.update_attributes(battle_params[:name])
     render json: @battle
   end
 
@@ -38,6 +39,10 @@ class BattlesController < ApplicationController
   end
 
   def battle_params
-    params.require(:battle).permit(:name)
+    params.permit(:name)
+  end
+
+  def battle_members_params
+    params.permit(:user_id)
   end
 end

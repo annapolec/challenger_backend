@@ -5,7 +5,7 @@ class Battle < ActiveRecord::Base
   after_save :notify_users
 
   def notify_users
-    users = self.battle_members.where(battle_member_type: "User")
+    users = User.where(id: self.battle_members.pluck(:battle_member_id))
     users.each do |user|
       FirebaseService.new.notify(user)
     end
