@@ -8,7 +8,7 @@ class BattleMembersController < ApplicationController
   def destroy
     @battle_member = BattleMember.find(params[:id])
     @battle_member.destroy
-    render json: 'ok'
+    render json: { status: 200 }.to_json
   end
 
   private

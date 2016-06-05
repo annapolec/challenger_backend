@@ -28,7 +28,7 @@ class GroupsController < ApplicationController
 
   def destroy
     @group.destroy
-    render status: 200
+    render json: { status: 200 }.to_json
   end
 
   private
