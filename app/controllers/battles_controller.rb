@@ -7,7 +7,6 @@ class BattlesController < ApplicationController
 
   def create
     @battle = Battle.create(battle_params)
-    BattleMember.create(battle_id: @battle.id, battle_member_type: "User", battle_member_id: battle_members_params[:user_id])
     render json: @battle
   end
 
@@ -29,7 +28,7 @@ class BattlesController < ApplicationController
 
   def destroy
    @battle.destroy   
-   render status: 200
+   render json: { status: 200 }.to_json
   end
 
   private
@@ -40,9 +39,5 @@ class BattlesController < ApplicationController
 
   def battle_params
     params.permit(:name)
-  end
-
-  def battle_members_params
-    params.permit(:user_id)
   end
 end

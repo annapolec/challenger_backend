@@ -11,39 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603230025) do
+ActiveRecord::Schema.define(version: 20160605165631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "battle_members", force: :cascade do |t|
     t.integer  "battle_id"
-    t.integer  "battle_member_id"
-    t.string   "battle_member_type"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.integer  "member_id"
+    t.string   "member_type"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "battle_members", ["battle_id"], name: "index_battle_members_on_battle_id", using: :btree
-  add_index "battle_members", ["battle_member_id"], name: "index_battle_members_on_battle_member_id", using: :btree
+  add_index "battle_members", ["member_id"], name: "index_battle_members_on_member_id", using: :btree
 
   create_table "battles", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "owner_id"
   end
 
   create_table "challenge_members", force: :cascade do |t|
     t.integer  "challenge_id"
-    t.integer  "challenge_member_id"
-    t.string   "challenge_member_type"
+    t.integer  "member_id"
+    t.string   "member_type"
     t.boolean  "completed"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "challenge_members", ["challenge_id"], name: "index_challenge_members_on_challenge_id", using: :btree
-  add_index "challenge_members", ["challenge_member_id"], name: "index_challenge_members_on_challenge_member_id", using: :btree
+  add_index "challenge_members", ["member_id"], name: "index_challenge_members_on_member_id", using: :btree
 
   create_table "challenges", force: :cascade do |t|
     t.string   "name"
@@ -82,5 +83,6 @@ ActiveRecord::Schema.define(version: 20160603230025) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
+  add_foreign_key "battles", "users", column: "owner_id"
   add_foreign_key "challenges", "users", column: "owner_id"
 end
