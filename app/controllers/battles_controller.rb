@@ -38,6 +38,6 @@ class BattlesController < ApplicationController
   end
 
   def battle_params
-    params.permit(:name)
+    params.permit(:name, :owner_id)
   end
 end
