@@ -44,7 +44,7 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-    params.permit(:name, :desc, :points, :battle_id)
+    params.permit(:name, :desc, :points, :battle_id, :owner_id)
   end
 end
 
