@@ -12,7 +12,7 @@ class ChallengeMembersController < ApplicationController
 
   private
 
-  def battle_member_params
+  def challenge_member_params
     params.permit(:challenge_id, :member_type, :member_id, :completed)
   end
 end
