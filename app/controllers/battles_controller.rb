@@ -7,6 +7,7 @@ class BattlesController < ApplicationController
 
   def create
     @battle = Battle.create(battle_params)
+    BattleMember.create(battle_id: @battle.id, member_id: battle_params[:owner_id], member_type: "User")
     render json: @battle
   end
 

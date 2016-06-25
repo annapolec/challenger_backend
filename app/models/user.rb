@@ -5,11 +5,11 @@ class User < ActiveRecord::Base
   has_many :challenge_members, as: :member
   has_many :challenges, through: :challenge_members
 
-  def all_battles
-    self.battles + Battle.where(owner_id: self.id)
-  end
-
   def all_challenges
-    self.challenges + Challenge.where(owner_id: self.id)
+    challenges = []
+    self.battles.each do |battle|
+      challenges << battle.challenges
+    end
+    challenges
   end
 end
