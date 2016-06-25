@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     post "add_user" => "battle_members#create"
     resources :challenges
   end
+  resources :challenge_members
   resources :groups
 
   post "login" => "users#login"
