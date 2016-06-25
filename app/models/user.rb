@@ -6,10 +6,12 @@ class User < ActiveRecord::Base
   has_many :challenges, through: :challenge_members
 
   def all_challenges
-    challenges = []
+    challenge_ids = []
     self.battles.each do |battle|
-      challenges << battle.challenges
+      battle.challenges.each do |challenge|
+        challenge_ids << challenge.id
+      end
     end
-    challenges
+  Challenge.where(id: challenge_ids)
   end
 end
