@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605165631) do
+ActiveRecord::Schema.define(version: 20160629123028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,19 +60,19 @@ ActiveRecord::Schema.define(version: 20160605165631) do
   add_index "challenges", ["battle_id"], name: "index_challenges_on_battle_id", using: :btree
   add_index "challenges", ["owner_id"], name: "index_challenges_on_owner_id", using: :btree
 
+  create_table "group_users", id: false, force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+  end
+
+  add_index "group_users", ["group_id"], name: "index_group_users_on_group_id", using: :btree
+  add_index "group_users", ["user_id"], name: "index_group_users_on_user_id", using: :btree
+
   create_table "groups", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
-  create_table "groups_users", id: false, force: :cascade do |t|
-    t.integer "group_id"
-    t.integer "user_id"
-  end
-
-  add_index "groups_users", ["group_id"], name: "index_groups_users_on_group_id", using: :btree
-  add_index "groups_users", ["user_id"], name: "index_groups_users_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at",              null: false
