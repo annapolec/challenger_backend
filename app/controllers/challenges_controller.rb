@@ -3,15 +3,16 @@ class ChallengesController < ApplicationController
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
   def new
-    @challenge = @battle.challenges.new
+    @challenge = @battle.challenges.build
   end
 
   def create
     @challenge = @battle.challenges.build(challenge_params)
     if @challenge.save
       respond_to do |format|
-        format.html
+        format.html { redirect_to [@battle, @challenge] }
         format.json { render json: @challenge }
+      end
     else
       render action: 'new'
     end
@@ -34,7 +35,7 @@ class ChallengesController < ApplicationController
   def update
     if @challenge.update_attributes(challenge_params)
       respond_to do |format|
-        format.html
+        format.html { redirect_to [@battle, @challenge] }
         format.json { render json: @challenge }
       end
     else
@@ -45,7 +46,7 @@ class ChallengesController < ApplicationController
   def destroy
     if @challenge.destroy
       respond_to do |format|
-        format.html
+        format.html {redirect_to @battle }
         format.json { render json: { status: 200 }.to_json }
       end
     end
@@ -62,7 +63,7 @@ class ChallengesController < ApplicationController
   end
 
   def challenge_params
-    params.permit(:name, :desc, :points, :battle_id, :owner_id)
+    params.require(:challenge).permit(:name, :desc, :points, :battle_id, :owner_id)
   end
 end
 

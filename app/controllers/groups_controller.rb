@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     if @group.save
       respond_to do |format|
-        format.html
+        format.html { redirect_to @group }
         format.json { render json: @group }
       end
     else
@@ -34,7 +34,7 @@ class GroupsController < ApplicationController
   def update
     if @group.update_attributes(group_params)
       respond_to do |format|
-        format.html
+        format.html { redirect_to @group }
         format.json { render json: @group }
       end
     else
@@ -45,9 +45,10 @@ class GroupsController < ApplicationController
   def destroy
     if @group.destroy
       respond_to do |format|
-        format.html
-        format.json { render json: { stauts: 200}.to_json }
+        format.html { redirect_to groups_path }
+        format.json { render json: { status: 200 }.to_json }
       end
+    end
   end
 
   private
