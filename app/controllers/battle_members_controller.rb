@@ -1,14 +1,25 @@
 class BattleMembersController < ApplicationController
   
   def create
-    @battle_member = BattleMember.create(battle_member_params)    
-    render json: @battle_member
+    @battle_member = BattleMember.new(battle_member_params)
+    if @battle_member.save
+      respond_to do |format|
+        format.html
+        format.json { render json: @battle_member}
+      end
+    else
+      render action: 'new'
+    end 
   end
 
   def destroy
     @battle_member = BattleMember.find(params[:id])
-    @battle_member.destroy
-    render json: { status: 200 }.to_json
+    if @battle_member.destroy
+      respond_to |format|
+        format.html
+        format.json { render json: { status: 200 }.to_json }
+      end
+    end
   end
 
   private

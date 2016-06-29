@@ -4,12 +4,17 @@ class ChallengesController < ApplicationController
 
   def new
     @challenge = @battle.challenges.new
-    render json: @challenge
   end
 
   def create
-    @challenge = @battle.challenges.create(challenge_params)
-    render json: @challenge
+    @challenge = @battle.challenges.build(challenge_params)
+    if @challenge.save
+      respond_to do |format|
+        format.html
+        format.json { render json: @challenge }
+    else
+      render action: 'new'
+    end
   end
 
   def show
@@ -17,20 +22,33 @@ class ChallengesController < ApplicationController
 
   def index
     @challenges = @battle.challenges
-    render json: @challenges
+    respond_to do |format|
+      format.html
+      format.json { render json: @challenges }
+    end
   end
 
   def edit
   end
 
   def update
-    @challenge.update_attributes(challenge_params)
-    render json: @challenge
+    if @challenge.update_attributes(challenge_params)
+      respond_to do |format|
+        format.html
+        format.json { render json: @challenge }
+      end
+    else
+      render action: 'edit'
+    end
   end
 
   def destroy
-    @challenge.destroy
-    render json: { status: 200 }.to_json   
+    if @challenge.destroy
+      respond_to do |format|
+        format.html
+        format.json { render json: { status: 200 }.to_json }
+      end
+    end
   end
 
   private

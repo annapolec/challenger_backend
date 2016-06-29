@@ -1,13 +1,21 @@
 class ChallengeMembersController < ApplicationController
   def create
-    @challenge_member = ChallengeMember.create(challenge_member_params)    
-    render json: @challenge_member
+    @challenge_member = ChallengeMember.new(challenge_member_params)    
+    if @challenge_member.save
+      respond_to do |format|
+        format.html
+        format.json { render json: @challenge_member}
+      end
   end
 
   def destroy
     @challenge_member = ChallengeMember.find(params[:id])
-    @challenge_member.destroy
-    render json: { status: 200 }.to_json
+    if @challenge_member.destroy
+      respond_to do |format|
+        format.html
+        format.json { render json: { status: 200 }.to_json }
+      end
+    end
   end
 
   private
