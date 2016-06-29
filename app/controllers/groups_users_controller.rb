@@ -3,7 +3,7 @@ class GroupsUsersController < ApplicationController
     @group_user = GroupUser.new(group_user_params)
     if @group_user.save
       respond_to do |format|
-        format.html # index.html.erb
+        format.html
         format.json { render json: @users}
       end
     else

@@ -6,14 +6,22 @@ class BattlesController < ApplicationController
   end
 
   def create
-    @battle = Battle.create(battle_params)
-    BattleMember.create(battle_id: @battle.id, member_id: battle_params[:owner_id], member_type: "User")
-    render json: @battle
+    @battle = Battle.new(battle_params)
+    @battle_member = BattleMember.new(battle_id: @battle.id, member_id: battle_params[:owner_id], member_type: "User")
+    if @battle.save && @battle_member.save 
+      respond_to do |format|
+        format.html
+        format.json { render json: @battle }
+      end
+    end    
   end
 
   def index
     @battles = Battle.all
-    render json: @battles
+    respond_to do |format|
+      format.html
+      format.json { render json: @battles }
+    end
   end
 
   def show
@@ -23,13 +31,23 @@ class BattlesController < ApplicationController
   end
 
   def update
-    @battle.update_attributes(battle_params[:name])
-    render json: @battle
+    if @battle.update_attributes(battle_params[:name])
+      respond_to do |format|
+        format.html
+        format.json { render json: @battle }
+      end
+    else
+      render action: 'edit'
+    end
   end
 
   def destroy
-   @battle.destroy   
-   render json: { status: 200 }.to_json
+    if @battle.destroy
+      respond_to do |format|
+        format.html 
+        format.json { render json: { stauts: 200 }.to_json }
+      end
+    end
   end
 
   private

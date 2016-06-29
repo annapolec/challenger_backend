@@ -6,13 +6,23 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @group = Group.create(group_params)
-    render json: @group
+    @group = Group.new(group_params)
+    if @group.save
+      respond_to do |format|
+        format.html
+        format.json { render json: @group }
+      end
+    else
+      render action: 'new'
+    end
   end
 
   def index
     @groups = Group.all
-    render json: @groups
+    respond_to do |format|
+      format.html
+      format.json { render json: @groups }
+    end
   end
 
   def show
@@ -22,13 +32,22 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group.update_attributes(group_params)
-    render json: @group
+    if @group.update_attributes(group_params)
+      respond_to do |format|
+        format.html
+        format.json { render json: @group }
+      end
+    else
+      render action: 'edit'
+    end
   end
 
   def destroy
-    @group.destroy
-    render json: { status: 200 }.to_json
+    if @group.destroy
+      respond_to do |format|
+        format.html
+        format.json { render json: { stauts: 200}.to_json }
+      end
   end
 
   private
