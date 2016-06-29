@@ -10,7 +10,7 @@ class BattlesController < ApplicationController
     @battle_member = BattleMember.new(battle_id: @battle.id, member_id: battle_params[:owner_id], member_type: "User")
     if @battle.save && @battle_member.save 
       respond_to do |format|
-        format.html
+        format.html { redirect_to @battle }
         format.json { render json: @battle }
       end
     end    
@@ -31,9 +31,9 @@ class BattlesController < ApplicationController
   end
 
   def update
-    if @battle.update_attributes(battle_params[:name])
+    if @battle.update_attributes(battle_params)
       respond_to do |format|
-        format.html
+        format.html { redirect_to @battle }
         format.json { render json: @battle }
       end
     else
@@ -44,7 +44,7 @@ class BattlesController < ApplicationController
   def destroy
     if @battle.destroy
       respond_to do |format|
-        format.html 
+        format.html { redirect_to battles_path }
         format.json { render json: { stauts: 200 }.to_json }
       end
     end
@@ -57,6 +57,6 @@ class BattlesController < ApplicationController
   end
 
   def battle_params
-    params.permit(:name, :owner_id)
+    params.require(:battle).permit(:name, :owner_id)
   end
 end
