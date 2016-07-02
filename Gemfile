@@ -13,6 +13,7 @@ gem 'haml-rails', '~> 0.9.0'
 gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem 'devise'
 gem 'rest-client'
+gem 'bootstrap', '~> 4.0.0.alpha3'
 
 group :development, :test do
   gem 'byebug'
