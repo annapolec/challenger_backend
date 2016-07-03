@@ -1,9 +1,15 @@
-%p= @group.name
+.row.p-t-3
+  %h1.text-xs-center= @group.name
+  .col-md-6.col-md-offset-3
+    .list-group
+      - @group.battles.each do |battle|
+        = link_to battle.name, battle_path(@battle), class: 'list-group-item'
+.row
+  = button_to "Add user", '#', class: 'btn btn-info-outline center-block m-t-3'
 
-%p
-  = link_to "All groups", groups_path
-  = link_to "Edit group", edit_group_path(@group)
-  = link_to "Destroy group", group_path, method: :delete
-
-%p
-  / = link_to "Add users", add_users_group_path(@group)
+.row.m-t-2
+  - @group.users.each do |user|
+    .col-md-2.col-md-offset-3
+      = image_tag('default_profile.jpg', class: 'card-img-top img-fluid')
+      .card-block
+        %h4.card-title= user.email

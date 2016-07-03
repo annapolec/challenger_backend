@@ -1,9 +1,11 @@
-.row
+.row.m-b-3
   %nav.navbar.navbar-fixed-top.navbar-light.bg-faded
     .container
       .nav.navbar-nav
-        .nav-item.active.nav-link= link_to "Battles", battles_path
-        .nav-item.nav-link= link_to "Groups", groups_path
-        .nav-item.nav-link= link_to "Ranking", '#'
-        .nav-item.nav-link.pull-xs-right= link_to "Log in", '#'
+        = link_to "Battles", battles_path, class: 'nav-item active nav-link'
+        = link_to "Groups", groups_path, class: 'nav-item active nav-link'
+        = link_to "Ranking", '#', class: 'nav-item active nav-link'
+        = link_to "Sign up", '#', class: 'nav-item nav-link pull-xs-right'
+        = link_to "Log in", '#', class: 'nav-item nav-link pull-xs-right'
+
 

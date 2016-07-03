@@ -1,6 +1,8 @@
-%h1.display-4 Listing battles
-%ul
-  - @battles.each do |battle|
-    %li= link_to battle.name, battle_path(battle)
-
-= link_to "New battle", new_battle_path, class: 'btn btn-primary'
+.row.p-t-3
+  %h1.text-xs-center My battles
+  .col-md-6.col-md-offset-3
+    .list-group
+      - @battles.each do |battle|
+        = link_to battle.name, battle_path(battle), class: 'list-group-item'
+.row  
+  = button_to "New battle", new_battle_path, class: 'btn btn-info-outline btn-lg center-block m-t-3'
