@@ -1,10 +1,22 @@
-%p= @battle.name
+.row.p-t-3
+  %h1.text-xs-center= @battle.name
+  .col-md-6.col-md-offset-3
+    .list-group
+      - @battle.challenges.each do |challenge|
+        = link_to challenge.name, battle_challenge_path(@battle, challenge), class: 'list-group-item'
+.row
+  .col-md-offset-5
+    .btn-group.m-t-3
+      = link_to "Add challenge", new_battle_challenge_path(@battle), class: 'btn btn-info-outline'
+      = link_to "Add user", '#', class: 'btn btn-info-outline'
 
-%p
-  = link_to "All battles", battles_path
-  = link_to "Edit battle", edit_battle_path(@battle)
-  = link_to "Destroy battle", battle_path, method: :delete
+.row.m-t-2
+  - @battle.battle_members.each do |member|
+    .col-md-2.col-md-offset-3
+      = image_tag('default_profile.jpg', class: 'card-img-top img-fluid')
+      .card-block
+        %h4.card-title Name
 
-%p
-  = link_to "Add challenge", new_battle_challenge_path(@battle)
-  = link_to "Challenges", battle_challenges_path(@battle)
+
+
+
