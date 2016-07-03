@@ -1,9 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, except: [:new, :create, :index]
-
-  def new
-    @group = Group.new
-  end
+  before_action :set_group, except: [:create, :index]
 
   def create
     @group = Group.new(group_params)
@@ -19,6 +15,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.all
+    @group = Group.new
     respond_to do |format|
       format.html
       format.json { render json: @groups }

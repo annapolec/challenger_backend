@@ -2,15 +2,11 @@ class ChallengesController < ApplicationController
   before_action :set_battle
   before_action :set_challenge, only: [:show, :edit, :update, :destroy]
 
-  def new
-    @challenge = @battle.challenges.build
-  end
-
   def create
     @challenge = @battle.challenges.build(challenge_params)
     if @challenge.save
       respond_to do |format|
-        format.html { redirect_to [@battle, @challenge] }
+        format.html { redirect_to @battle }
         format.json { render json: @challenge }
       end
     else
