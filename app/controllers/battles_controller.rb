@@ -1,10 +1,6 @@
 class BattlesController < ApplicationController
   before_action :set_battle, only: [:show, :edit, :update, :destroy]
 
-  def new
-    @battle = Battle.new
-  end
-
   def create
     @battle = Battle.new(battle_params)
     @battle_member = BattleMember.new(battle_id: @battle.id, member_id: battle_params[:owner_id], member_type: "User")
@@ -18,6 +14,7 @@ class BattlesController < ApplicationController
 
   def index
     @battles = Battle.all
+    @battle = Battle.new
     respond_to do |format|
       format.html
       format.json { render json: @battles }
@@ -25,6 +22,7 @@ class BattlesController < ApplicationController
   end
 
   def show
+    @challenge = @battle.challenges.new
   end
 
   def edit

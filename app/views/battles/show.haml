@@ -2,12 +2,13 @@
   %h1.text-xs-center= @battle.name
   .col-md-6.col-md-offset-3
     .list-group
-      - @battle.challenges.each do |challenge|
+      - @battle.challenges.where.not(id: nil).each do |challenge|
         = link_to challenge.name, battle_challenge_path(@battle, challenge), class: 'list-group-item'
 .row
   .col-md-offset-5
     .btn-group.m-t-3
-      = link_to "Add challenge", new_battle_challenge_path(@battle), class: 'btn btn-info-outline'
+      %button.btn.btn-info-outline{"data-target" => "#challengeFormModal", "data-toggle" => "modal", :type => "button"}
+        Add challenge
       = link_to "Add user", '#', class: 'btn btn-info-outline'
 
 .row.m-t-2
@@ -16,6 +17,8 @@
       = image_tag('default_profile.jpg', class: 'card-img-top img-fluid')
       .card-block
         %h4.card-title Name
+
+= render 'challenges/form'
 
 
 
