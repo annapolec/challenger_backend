@@ -1,5 +1,5 @@
 class ChallengeMember < ActiveRecord::Base
-  belongs_to :challenge_member, polymorphic: true
+  belongs_to :member, polymorphic: true
   belongs_to :challenge
 
   after_create :notify_users
