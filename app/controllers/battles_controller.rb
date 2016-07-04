@@ -25,6 +25,7 @@ class BattlesController < ApplicationController
 
   def show
     @challenge = @battle.challenges.new
+    @battle_member = BattleMember.new
   end
 
   def edit

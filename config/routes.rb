@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   resources :groups
   resources :group_users
+  resources :battle_members
   resources :challenge_members  
 
   post "login" => "users#login"

@@ -9,7 +9,14 @@
     .btn-group.m-t-3
       %button.btn.btn-info-outline{"data-target" => "#challengeFormModal", "data-toggle" => "modal", :type => "button"}
         Add challenge
-      = link_to "Add user", '#', class: 'btn btn-info-outline'
+      %button.btn.btn-info-outline{"data-target" => "#battleMemberUserFormModal", "data-toggle" => "modal", :type => "button"}
+        Add user
+      %button.btn.btn-info-outline{"data-target" => "#battleMemberGroupFormModal", "data-toggle" => "modal", :type => "button"}
+        Add group
+
+= render 'challenges/form'
+= render 'battle_members/form_for_user'
+= render 'battle_members/form_for_group'
 
 .row.m-t-2
   - @battle.battle_members.each do |member|
@@ -17,8 +24,6 @@
       = image_tag('default_profile.jpg', class: 'card-img-top img-fluid')
       .card-block
         %h4.card-title Name
-
-= render 'challenges/form'
 
 
 
