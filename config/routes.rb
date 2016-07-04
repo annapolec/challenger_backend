@@ -4,8 +4,9 @@ Rails.application.routes.draw do
     post "add_user" => "battle_members#create"
     resources :challenges
   end
-  resources :challenge_members
   resources :groups
+  resources :group_users
+  resources :challenge_members  
 
   post "login" => "users#login"
   post "refresh_token" => "refresh_token#create"

@@ -23,6 +23,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @group_user = GroupUser.new
   end
 
   def edit

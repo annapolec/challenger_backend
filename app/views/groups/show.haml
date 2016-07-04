@@ -5,11 +5,15 @@
       - @group.battles.each do |battle|
         = link_to battle.name, battle_path(@battle), class: 'list-group-item'
 .row
-  = button_to "Add user", '#', class: 'btn btn-info-outline center-block m-t-3'
+  .col-md-2.col-md-offset-5.m-t-2
+    %button.btn.btn-info-outline.btn-lg{"data-target" => "#groupUserFormModal", "data-toggle" => "modal", :type => "button"}
+      Add user
 
 .row.m-t-2
   - @group.users.each do |user|
-    .col-md-2.col-md-offset-3
+    .col-md-3
       = image_tag('default_profile.jpg', class: 'card-img-top img-fluid')
       .card-block
-        %h4.card-title= user.email
+        %p.card-text= user.email
+
+= render 'group_users/form'
