@@ -1,16 +1,20 @@
-%p= @challenge.name
-%ul
-  %li= @challenge.desc
-  %li= @challenge.points
-  %li= @challenge.status
+.row.p-t-3
+  %h1.text-xs-center
+    = @challenge.name
+    %span.label.label-pill.label-info= @challenge.points
+  %p.text-xs-center= @challenge.desc
 
-%p
-  = link_to "Edit challenge", edit_battle_challenge_path(@battle, @challenge)
-  = link_to "Destroy challenge", battle_challenge_path(@battle, @challenge), method: :delete
+.row.m-t-3
+  = button_to "Back to battle", battle_path(@battle), method: :get, class: 'btn btn-info-outline center-block'
 
-%p
-  = link_to "All battles", battles_path
-  = link_to "Back to battle", battle_path(@battle)
+.row.m-t-3
+  %h4.text-xs-center Completed by:
+  - @challenge.challenge_members.each do |member|
+    .col-md-3
+      = image_tag('default_profile.jpg', class: 'card-img-top img-fluid')
+      .card-block
+        %h4.card-title Name
+
 
  
 
