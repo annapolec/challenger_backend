@@ -19,11 +19,12 @@
 = render 'battle_members/form_for_group'
 
 .row.m-t-2
-  - @battle.battle_members.each do |member|
+  - @battle.battle_members.each do |battle_member|
     .col-md-3
       = image_tag('default_profile.jpg', class: 'card-img-top img-fluid')
       .card-block
-        %h4.card-title Name
+        %h4.card-title= battle_member.member.email if battle_member.member_type == 'User'
+        %h4.card-title= battle_member.member.name if battle_member.member_type == 'Group'
 
 
 
