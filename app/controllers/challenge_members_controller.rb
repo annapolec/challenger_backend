@@ -3,9 +3,10 @@ class ChallengeMembersController < ApplicationController
     @challenge_member = ChallengeMember.new(challenge_member_params)    
     if @challenge_member.save
       respond_to do |format|
-        format.html
+        format.html { redirect_to [@challenge_member.challenge.battle, @challenge_member.challenge] }
         format.json { render json: @challenge_member}
       end
+    end
   end
 
   def destroy
@@ -21,6 +22,6 @@ class ChallengeMembersController < ApplicationController
   private
 
   def challenge_member_params
-    params.permit(:challenge_id, :member_type, :member_id, :completed)
+    params.require(:challenge_member).permit(:challenge_id, :member_type, :member_id, :completed)
   end
 end
