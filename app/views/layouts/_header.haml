@@ -5,7 +5,8 @@
         = link_to "Battles", battles_path, class: 'nav-item active nav-link'
         = link_to "Groups", groups_path, class: 'nav-item active nav-link'
         = link_to "Ranking", '#', class: 'nav-item active nav-link'
-        = link_to "Sign up", '#', class: 'nav-item nav-link pull-xs-right'
-        = link_to "Log in", '#', class: 'nav-item nav-link pull-xs-right'
+        = link_to "Sign up", new_user_registration_path, class: 'nav-item nav-link pull-xs-right'
+        = link_to "Log in", new_user_session_path, class: 'nav-item nav-link pull-xs-right'
+        = link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-item nav-link pull-xs-right'
 
 
