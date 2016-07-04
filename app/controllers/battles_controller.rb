@@ -9,6 +9,8 @@ class BattlesController < ApplicationController
         format.html { redirect_to @battle }
         format.json { render json: @battle }
       end
+    else
+      render action: 'show'
     end    
   end
 

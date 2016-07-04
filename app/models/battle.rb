@@ -1,7 +1,7 @@
 class Battle < ActiveRecord::Base
   has_many :battle_members
   has_many :challenges
-
+  validates :name, presence: true
   after_save :notify_users
 
   def notify_users
