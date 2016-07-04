@@ -15,6 +15,7 @@ class ChallengesController < ApplicationController
   end
 
   def show
+    @challenge_member = ChallengeMember.new
   end
 
   def index
