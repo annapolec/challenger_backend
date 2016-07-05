@@ -9,8 +9,6 @@ class BattlesController < ApplicationController
         format.html { redirect_to @battle }
         format.json { render json: @battle }
       end
-    else
-      render action: 'show'
     end    
   end
 
@@ -58,6 +56,6 @@ class BattlesController < ApplicationController
   end
 
   def battle_params
-    params.require(:battle).permit(:name, :owner_id)
+    params.require(:battle).permit(:name, :owner_id, :mode)
   end
 end
