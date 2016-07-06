@@ -2,9 +2,9 @@ class BattlesController < ApplicationController
   before_action :set_battle, only: [:show, :edit, :update, :destroy]
 
   def create
-    @battle = Battle.new(battle_params)
-    @battle_member = BattleMember.new(battle_id: @battle.id, member_id: battle_params[:owner_id], member_type: "User")
-    if @battle.save && @battle_member.save 
+    @battle = Battle.new(battle_params)    
+    if @battle.save
+      BattleMember.create(battle_id: @battle.id, member_id: battle_params[:owner_id], member_type: "User")
       respond_to do |format|
         format.html { redirect_to @battle }
         format.json { render json: @battle }
@@ -14,6 +14,7 @@ class BattlesController < ApplicationController
 
   def index
     @battles = current_user.battles
+    authorize @battles
     @battle = Battle.new
     respond_to do |format|
       format.html
@@ -53,6 +54,7 @@ class BattlesController < ApplicationController
 
   def set_battle
     @battle = Battle.find(params[:id])
+    authorize @battle
   end
 
   def battle_params

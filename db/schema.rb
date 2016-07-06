@@ -33,10 +33,7 @@ ActiveRecord::Schema.define(version: 20160705201302) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "owner_id"
-<<<<<<< HEAD
     t.boolean  "mode"
-=======
->>>>>>> 587a4df4543550852df4b0d3de9f83559830c015
   end
 
   create_table "challenge_members", force: :cascade do |t|

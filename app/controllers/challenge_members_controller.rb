@@ -1,6 +1,7 @@
 class ChallengeMembersController < ApplicationController
   def create
-    @challenge_member = ChallengeMember.new(challenge_member_params)    
+    @challenge_member = ChallengeMember.new(challenge_member_params)
+    authorize @challenge_member
     if @challenge_member.save
       respond_to do |format|
         format.html { redirect_to [@challenge_member.challenge.battle, @challenge_member.challenge] }

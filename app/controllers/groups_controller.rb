@@ -3,7 +3,9 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    authorize @group
     if @group.save
+      GroupUser.create(group_id: @group.id, user_id: current_user.id)
       respond_to do |format|
         format.html { redirect_to @group }
         format.json { render json: @group }
@@ -15,6 +17,7 @@ class GroupsController < ApplicationController
 
   def index
     @groups = current_user.groups
+    authorize @groups
     @group = Group.new
     respond_to do |format|
       format.html
@@ -53,6 +56,7 @@ class GroupsController < ApplicationController
 
   def set_group
     @group = Group.find(params[:id])
+    authorize @group
   end
 
   def group_params
