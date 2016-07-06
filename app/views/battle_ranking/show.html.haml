@@ -6,3 +6,5 @@
         .list-group-item
           = User.find(user_id).email
           = points
+.row.m-t-2
+  = button_to "Back to battle", battle_path(params[:battle_id]), method: :get, class: 'btn btn-info-outline center-block'

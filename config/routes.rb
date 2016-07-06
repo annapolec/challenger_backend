@@ -14,5 +14,10 @@ Rails.application.routes.draw do
   get "ranking" => "ranking#show"
   post "refresh_token" => "refresh_token#create"
   get "sync" => "sync#show"
-  root "battles#index"  
+  authenticated :user do
+    root :to => "battles#index", as: :authenticated_root
+  end
+  devise_scope :user do
+    root :to => "devise/sessions#new"
+  end
 end

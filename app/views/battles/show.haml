@@ -15,6 +15,7 @@
       - elsif @battle.for_groups?
         %button.btn.btn-info-outline{"data-target" => "#battleMemberGroupFormModal", "data-toggle" => "modal", :type => "button"}
           Add group
+      = link_to "Ranking", battle_ranking_path(@battle), class: 'btn btn-info-outline'
 
 = render 'challenges/form'
 = render 'battle_members/form_for_user'
