@@ -14,7 +14,7 @@ class GroupsController < ApplicationController
   end
 
   def index
-    @groups = Group.all
+    @groups = current_user.groups
     @group = Group.new
     respond_to do |format|
       format.html

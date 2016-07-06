@@ -3,7 +3,7 @@
   .col-md-6.col-md-offset-3
     .list-group
       - @group.battles.each do |battle|
-        = link_to battle.name, battle_path(@battle), class: 'list-group-item'
+        = link_to battle.name, battle_path(battle), class: 'list-group-item'
 .row
   .col-md-2.col-md-offset-5.m-t-2
     %button.btn.btn-info-outline.btn-lg{"data-target" => "#groupUserFormModal", "data-toggle" => "modal", :type => "button"}

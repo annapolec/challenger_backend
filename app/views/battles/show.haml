@@ -9,10 +9,12 @@
     .btn-group.m-t-3
       %button.btn.btn-info-outline{"data-target" => "#challengeFormModal", "data-toggle" => "modal", :type => "button"}
         Add challenge
-      %button.btn.btn-info-outline{"data-target" => "#battleMemberUserFormModal", "data-toggle" => "modal", :type => "button"}
-        Add user
-      %button.btn.btn-info-outline{"data-target" => "#battleMemberGroupFormModal", "data-toggle" => "modal", :type => "button"}
-        Add group
+      - if @battle.for_users?
+        %button.btn.btn-info-outline{"data-target" => "#battleMemberUserFormModal", "data-toggle" => "modal", :type => "button"}
+          Add user
+      - elsif @battle.for_groups?
+        %button.btn.btn-info-outline{"data-target" => "#battleMemberGroupFormModal", "data-toggle" => "modal", :type => "button"}
+          Add group
 
 = render 'challenges/form'
 = render 'battle_members/form_for_user'

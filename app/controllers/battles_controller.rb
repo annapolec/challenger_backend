@@ -13,7 +13,7 @@ class BattlesController < ApplicationController
   end
 
   def index
-    @battles = Battle.all
+    @battles = current_user.battles
     @battle = Battle.new
     respond_to do |format|
       format.html
