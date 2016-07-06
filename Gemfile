@@ -14,6 +14,7 @@ gem 'simple_form', '~> 3.2', '>= 3.2.1'
 gem 'devise'
 gem 'rest-client'
 gem 'bootstrap', '~> 4.0.0.alpha3'
+gem 'pundit', '~> 1.1'
 
 group :development, :test do
   gem 'byebug'
